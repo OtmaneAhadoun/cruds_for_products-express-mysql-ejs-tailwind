@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;800;900&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,800&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link
+    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+    rel="stylesheet">
+    <title><%= page  %></title>
+</head>
+<body class=" font-main">
+    <div class=" w-full pb-12 flex-col gap-3 h-screen flex justify-center bg-gray-900">
+        <h1 class="w-full capitalize text-center text-white text-lg font-semibold py-3 max-w-sm mx-auto "><%= locals.product?'update product':"add new product"  %> </h1>
+        <form method="post" action="<%= locals.action ? '/product/update':'/product'  %>" class=" text-white flex flex-col gap-2 w-full max-w-sm mx-auto">
+            <div class=" w-full gap-1 flex flex-col">
+                <label class=" capitalize text-sm font-semibold" for="">title</label>
+                <input required name="title" value="<%= locals.product && locals.product.title %>" type="text" class=" bg-gray-800 p-2 rounded-sm outline-none">
+            </div>
+            <% if(locals.product){   %>
+                <input type="hidden"  name="id" value=<%=locals.product.id %>>
+            <% } %>
+            <div class=" w-full gap-1 flex flex-col">
+                <label class=" capitalize text-sm font-semibold" for="">price</label>
+                <input required name="price" value="<%= locals.product && locals.product.price %>" type="number" class=" bg-gray-800 p-2 rounded-sm outline-none">
+            </div>
+            <div class=" w-full gap-1 flex flex-col">
+                <label class=" capitalize text-sm font-semibold" for="">quantity</label>
+                <input required name="quantity" value="<%= locals.product && locals.product.quantity %>" type="number" class=" bg-gray-800 p-2 rounded-sm outline-none">
+            </div>
+            <div class=" w-full gap-1 flex flex-col">
+                <label class=" capitalize text-sm font-semibold" for="">category</label>
+                <input required name="category" type="text" value="<%= locals.product && locals.product.category %>" class=" bg-gray-800 p-2 rounded-sm outline-none">
+            </div>
+            <div class=" w-full gap-1 flex flex-col">
+                <label class=" capitalize text-sm font-semibold" for="">description</label>
+                <textarea required name="description" class=" bg-gray-800 resize-none h-36 p-2 rounded-sm outline-none"><%= locals.product && locals.product.description %></textarea>
+            </div>
+            <div class=" flex justify-end gap-1">
+                <a href="/" class=" self-end text-sm font-semibold bg-red-400 px-4 w-fit capitalize text-white rounded-sm p-2">back</a>
+                <button class=" self-end text-sm font-semibold bg-green-400 px-4 w-fit capitalize text-white rounded-sm p-2"><%= locals.product?'update':"ajouter"  %></button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

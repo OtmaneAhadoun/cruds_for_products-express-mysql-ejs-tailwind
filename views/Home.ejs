@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;800;900&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,800&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link
+    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+    rel="stylesheet">
+    <title>home</title>
+    <style>
+        .table {
+            border-spacing: 0 10px;
+        }
+    
+        i {
+            font-size: 1.2rem !important;
+        }
+    
+
+    
+
+    </style>
+</head>
+<body class=" font-main">
+<div class="flex items-center justify-center min-h-screen bg-gray-900">
+<div>
+    <div class="overflow-auto lg:overflow-visible ">
+        <div class=" w-full gap-52 flex overflow-hidden justify-between">
+            <a href="/product/add" class=" inline-flex shrink-0 items-center justify-center px-4 bg-green-400 rounded-sm text-sm font-bold capitalize text-white">add new product</a>
+            <form action="/search" class=" gap-2 w-full min-w-full flex">
+                <input name="title" class="w-[374px] rounded-sm text-white outline-none p-2 bg-gray-800" type="text"/>
+                <button class=" px-4 rounded-sm bg-blue-400 text-sm font-bold capitalize text-white p-2">search</button>
+            </form>
+        </div>
+        <table class="table text-gray-400 border-separate text-sm">
+            <thead class="bg-gray-800 text-gray-500">
+                <tr class=" w-full capitalize flex text-gray-300">
+                    <td class=" text-bold py-3 w-[135px] shrink-0 text-center">title</td>
+                    <td class=" text-bold py-3 w-[135px] shrink-0 text-center">description</td>
+                    <td class=" text-bold py-3 w-[135px] shrink-0 text-center">Price</td>
+                    <td class=" text-bold py-3 w-[135px] shrink-0 text-center">quantity</td>
+                    <td class=" text-bold py-3 w-[135px] shrink-0 text-center">category</td>
+                    <td class=" text-bold py-3 w-[135px] shrink-0 text-center">actions</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(rows.length){ %>
+                <% rows.map(e=>{%>
+                    <tr class="bg-gray-800 items-center flex">
+                        <td class="p-3 text-center shrink-0 text-ellipsis overflow-hidden whitespace-nowrap w-[135px]">
+                            <%- e.title  %>
+                        </td>
+                        <td class="p-3 text-center shrink-0 text-ellipsis overflow-hidden whitespace-nowrap w-[135px]">
+                           <%= e.description  %>
+                        </td>
+                        <td class="p-3 text-center shrink-0 w-[135px]">
+                           <%= e.price  %>$
+                        </td>
+                        <td class="p-3 text-center shrink-0 w-[135px]">
+                            <%= e.quantity  %>
+                        </td>
+                        <td class="p-3 text-center shrink-0 w-[135px]">
+                            <%= e.category  %>
+                        </td>
+                        <td class=" flex p-4 w-[135px] min-h-full shrink-0 justify-center items-center gap-2 ">
+                            <a href="/product/update/<%= e.id %>" class="text-gray-400 mt-1 hover:text-green-500">
+                                <i class="material-icons-outlined text-base">edit</i>
+                            </a>
+                            <a href="/drop/<%= e.id %>" class="text-gray-400 mt-1 hover:text-red-500">
+                                <i class="material-icons-round text-base">delete_outline</i>
+                            </a>
+                        </td>
+                    </tr>
+                <%    })  %>
+                <% }else{ %>
+                    <tr class=" flex py-2 justify-center">
+                        <td class=" capitalize">no item</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+</body>
+</html>
